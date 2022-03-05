@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>JS CRUD Operation</title>
+</head>
+
+<body>
+    <div class="container ">
+        <h3 class="text-center my-5">Javascript CRUD Operation Practice</h3>
+
+
+        <form action="" class="m-5">
+            <div class="row">
+                <div class="col">
+                    <label for="">Name</label>
+                    <input type="text" placeholder="Your Name" id="name" class="form-control">
+                </div>
+
+                <div class="col">
+                    <label for="">ID</label>
+                    <input type="text" placeholder="Your ID" id="id" class="form-control">
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success my-3" id="add_info_btn">
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Action</th>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+    <script>
+        const name = document.getElementById("name");
+        const id = document.getElementById("id");
+        const add_info_btn = document.getElementById("add_info_btn");
+
+        const tbody = document.querySelector("tbody");
+
+
+        add_info_btn.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            if (name.value != "" && id.value != "") {
+
+
+                let tbody = document.querySelector("tbody");
+                let tr = document.createElement("tr");
+
+                let td1 = document.createElement("td");
+                td1.textContent = name.value;
+                tr.appendChild(td1);
+
+                let td2 = document.createElement("td");
+                td2.textContent = id.value;
+                tr.appendChild(td2);
+
+                // update and delete button added......
+
+                let btn1 = document.createElement("button");
+                btn1.textContent = "Update";
+                btn1.className = "btn btn-success update_btn mr-2 mt-1";
+                tr.appendChild(btn1);
+
+
+
+                let btn2 = document.createElement("button");
+                btn2.textContent = "Delete";
+                btn2.className = "btn btn-danger delete_btn mt-1";
+                tr.appendChild(btn2);
+                tbody.appendChild(tr);
+
+
+                let pos = tbody.firstElementChild; //last added task showed in first in ToDo list
+
+                if (pos == null) {
+                    tbody.appendChild(tr);
+                } else {
+                    tbody.insertBefore(tr, pos);
+                }
+
+                name.value = "";
+                id.value = "";
+
+                let delete_btn = document.querySelector(".delete_btn");
+                delete_btn.addEventListener("click", function(e) {
+                    //console.log("delete button clicked");
+                    let tbody = document.querySelector("tbody");
+                    let tr = e.target.parentNode;
+                    console.log(tr);
+                    tbody.removeChild(tr);
+
+
+
+
+
+                })
+
+
+
+
+
+            }
+
+
+        })
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
